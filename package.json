@@ -1,0 +1,24 @@
+{
+  "name": "gn_scraper",
+  "version": "1.0.0",
+  "description": "A daemon which imports all the fuel cost data from TropicFleet",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tropicfleet",
+    "fuel",
+    "cost",
+    "scraper",
+    "scraping"
+  ],
+  "author": "GasNinjas",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.5",
+    "path": "^0.12.7",
+    "puppeteer": "^1.2.0",
+    "request": "^2.85.0"
+  }
+}
