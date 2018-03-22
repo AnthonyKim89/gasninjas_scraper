@@ -90,7 +90,7 @@ const consoleLog = (message) => {
   // 4) Fill in the form to export
   consoleLog('4) Filling in the Export Form...');
   const today = new Date();
-  const yyyy = today.getFullYear();
+  const yy = today.getFullYear().toString().substr(-2);
   let mm = today.getMonth() + 1; //January is 0!
   let dd = today.getDate();
   if (mm < 10) {
@@ -107,7 +107,7 @@ const consoleLog = (message) => {
     let element = document.querySelector(obj.selector);
     if (element)
       element.value = obj.value;
-  }, { selector: config.export_selectors.input_selected, value: mm + '/01/' + yyyy });
+  }, { selector: config.export_selectors.input_selected, value: mm + '01' + yy });
 
   await page.click(config.export_selectors.input_date_to);
   await page.waitForNavigation();
@@ -116,19 +116,31 @@ const consoleLog = (message) => {
     let element = document.querySelector(obj.selector);
     if (element)
       element.value = obj.value;
-  }, { selector: config.export_selectors.input_selected, value: mm + '/' + dd + '/' + yyyy });
+  }, { selector: config.export_selectors.input_selected, value: mm + dd + yy });
 
+  await page.click(config.export_selectors.input_date_thru);
+  await page.waitForNavigation();
+  await page.waitFor(2000);
+
+  await page.click(config.export_selectors.input_send_to);
+  await page.waitForNavigation();
+  await page.waitFor(2000);
   await page.evaluate((obj) => {
     let element = document.querySelector(obj.selector);
     if (element)
       element.value = obj.value;
-  }, { selector: config.export_selectors.input_data_type, value: config.export_values.data_type });
+  }, { selector: config.export_selectors.input_selected, value: config.email });
 
-  await page.evaluate((obj) => {
-    let element = document.querySelector(obj.selector);
-    if (element)
-      element.value = obj.value;
-  }, { selector: config.export_selectors.input_send_to, value: config.email });
+  await page.click(config.export_selectors.input_date_thru);
+  await page.waitForNavigation();
+  await page.waitFor(2000);
+
+  consoleLog('Selecting a data type...');
+  await page.click(config.export_selectors.input_data_type);
+  await page.keyboard.press("ArrowDown");
+  await page.keyboard.press("Enter");
+
+  consoleLog('Selected the data type...');
 
   // 5 Hit "Submit" in the Export Page
   consoleLog('5) Hitting the Submit button...');
@@ -136,7 +148,7 @@ const consoleLog = (message) => {
   await page.click(config.export_selectors.btn_submit);
   await page.waitForNavigation();
 
-  // await browser.close();
+  await browser.close();
 
   consoleLog('done');
 })();
