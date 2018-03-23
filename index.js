@@ -101,6 +101,7 @@ const consoleLog = (message) => {
     dd = '0' + dd;
   }
 
+  consoleLog('Filling in the Date From...');
   await page.click(config.export_selectors.input_date_from);
   await page.waitForNavigation();
   await page.waitFor(2000);
@@ -110,6 +111,7 @@ const consoleLog = (message) => {
       element.value = obj.value;
   }, { selector: config.export_selectors.input_selected, value: mm + '01' + yy });
 
+  consoleLog('Filling in the Date To...');
   await page.click(config.export_selectors.input_date_to);
   await page.waitForNavigation();
   await page.waitFor(2000);
@@ -123,6 +125,7 @@ const consoleLog = (message) => {
   await page.waitForNavigation();
   await page.waitFor(2000);
 
+  consoleLog('Filling in the Email...');
   await page.click(config.export_selectors.input_send_to);
   await page.waitForNavigation();
   await page.waitFor(2000);
@@ -140,6 +143,7 @@ const consoleLog = (message) => {
   await page.click(config.export_selectors.input_data_type);
   await page.keyboard.press("ArrowDown");
   await page.keyboard.press("Enter");
+  await page.waitFor(2000);
 
   consoleLog('Selected the data type...');
 
