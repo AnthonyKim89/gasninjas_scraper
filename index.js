@@ -95,6 +95,7 @@ const consoleLog = (message) => {
   await page.waitFor(config.delay_long);
   await page.click(config.menu_selectors.radio_export);
   await page.waitForNavigation();
+  await page.waitFor(config.delay_long);
 
   // 4) Fill in the form to export
   consoleLog('4) Filling in the Export Form...');
@@ -125,6 +126,7 @@ const consoleLog = (message) => {
   await page.waitForNavigation();
   await page.waitFor(config.delay_long);
   consoleLog('Filling in the Date To.....');
+  await page.waitFor(config.delay_long);
   await page.evaluate((obj) => {
     let element = document.querySelector(obj.selector);
     if (element)
