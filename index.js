@@ -18,6 +18,14 @@ const consoleLog = (message) => {
   });
   const page = await browser.newPage();
 
+  consoleLog('Configuring the Scraper...');
+  consoleLog({
+    headless: config.headless,
+    email: config.email,
+    delay_short: config.delay_short,
+    delay_long: config.delay_long
+  });
+
   // 1) Open the Login Page
   consoleLog('1) Opening the Login Page...');
   await page.goto('http://www.tropicfleet.com/');
