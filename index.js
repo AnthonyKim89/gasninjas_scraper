@@ -13,7 +13,8 @@ const consoleLog = (message) => {
   const browser = await puppeteer.launch({
     headless: config.headless,
     timeout: 0,
-    ignoreHTTPSErrors: true
+    ignoreHTTPSErrors: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
   });
   const page = await browser.newPage();
 
