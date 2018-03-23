@@ -38,7 +38,7 @@ const consoleLog = (message) => {
 
   let nTry = 0;
   while (nTry++ < 10) {
-    await page.waitFor(1000);
+    await page.waitFor(config.delay_short);
 
     await page.evaluate((obj) => {
       let element = document.querySelector(obj.selector);
@@ -84,7 +84,7 @@ const consoleLog = (message) => {
 
   // 3) Choose "Export" in the Menu Page
   consoleLog('3) Choosing the "Export" in the Menu Page...');
-  await page.waitFor(2000);
+  await page.waitFor(config.delay_long);
   await page.click(config.menu_selectors.radio_export);
   await page.waitForNavigation();
 
@@ -104,7 +104,8 @@ const consoleLog = (message) => {
   consoleLog('Filling in the Date From...');
   await page.click(config.export_selectors.input_date_from);
   await page.waitForNavigation();
-  await page.waitFor(2000);
+  await page.waitFor(config.delay_long);
+  consoleLog('Filling in the Date From.....');
   await page.evaluate((obj) => {
     let element = document.querySelector(obj.selector);
     if (element)
@@ -114,7 +115,8 @@ const consoleLog = (message) => {
   consoleLog('Filling in the Date To...');
   await page.click(config.export_selectors.input_date_to);
   await page.waitForNavigation();
-  await page.waitFor(2000);
+  await page.waitFor(config.delay_long);
+  consoleLog('Filling in the Date To.....');
   await page.evaluate((obj) => {
     let element = document.querySelector(obj.selector);
     if (element)
@@ -123,12 +125,13 @@ const consoleLog = (message) => {
 
   await page.click(config.export_selectors.input_date_thru);
   await page.waitForNavigation();
-  await page.waitFor(2000);
+  await page.waitFor(config.delay_long);
 
   consoleLog('Filling in the Email...');
   await page.click(config.export_selectors.input_send_to);
   await page.waitForNavigation();
-  await page.waitFor(2000);
+  await page.waitFor(config.delay_long);
+  consoleLog('Filling in the Email.....');
   await page.evaluate((obj) => {
     let element = document.querySelector(obj.selector);
     if (element)
@@ -137,19 +140,19 @@ const consoleLog = (message) => {
 
   await page.click(config.export_selectors.input_date_thru);
   await page.waitForNavigation();
-  await page.waitFor(2000);
+  await page.waitFor(config.delay_long);
 
   consoleLog('Selecting a data type...');
   await page.click(config.export_selectors.input_data_type);
   await page.keyboard.press("ArrowDown");
   await page.keyboard.press("Enter");
-  await page.waitFor(2000);
+  await page.waitFor(config.delay_long);
 
   consoleLog('Selected the data type...');
 
   // 5 Hit "Submit" in the Export Page
   consoleLog('5) Hitting the Submit button...');
-  await page.waitFor(2000);
+  await page.waitFor(config.delay_long);
   await page.click(config.export_selectors.btn_submit);
   await page.waitForNavigation();
 
