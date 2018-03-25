@@ -121,7 +121,6 @@ const consoleLog = (message) => {
       element.value = obj.value;
   }, { selector: config.export_selectors.input_selected, value: mm + '01' + yy });
 
-  await page.waitForNavigation();
   await page.waitFor(config.delay_long);
 
   consoleLog('Filling in the Date To...');
@@ -135,7 +134,6 @@ const consoleLog = (message) => {
       element.value = obj.value;
   }, { selector: config.export_selectors.input_selected, value: mm + dd + yy });
 
-  await page.waitForNavigation();
   await page.waitFor(config.delay_long);
 
   await page.click(config.export_selectors.input_date_thru);
@@ -153,7 +151,6 @@ const consoleLog = (message) => {
       element.value = obj.value;
   }, { selector: config.export_selectors.input_selected, value: config.email });
 
-  await page.waitForNavigation();
   await page.waitFor(config.delay_long);
 
   await page.click(config.export_selectors.input_date_thru);
