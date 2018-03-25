@@ -121,17 +121,22 @@ const consoleLog = (message) => {
       element.value = obj.value;
   }, { selector: config.export_selectors.input_selected, value: mm + '01' + yy });
 
+  await page.waitForNavigation();
+  await page.waitFor(config.delay_long);
+
   consoleLog('Filling in the Date To...');
   await page.click(config.export_selectors.input_date_to);
   await page.waitForNavigation();
-  await page.waitFor(config.delay_long);
+  await page.waitFor(config.delay_long * 3);
   consoleLog('Filling in the Date To.....');
-  await page.waitFor(config.delay_long);
   await page.evaluate((obj) => {
     let element = document.querySelector(obj.selector);
     if (element)
       element.value = obj.value;
   }, { selector: config.export_selectors.input_selected, value: mm + dd + yy });
+
+  await page.waitForNavigation();
+  await page.waitFor(config.delay_long);
 
   await page.click(config.export_selectors.input_date_thru);
   await page.waitForNavigation();
@@ -147,6 +152,9 @@ const consoleLog = (message) => {
     if (element)
       element.value = obj.value;
   }, { selector: config.export_selectors.input_selected, value: config.email });
+
+  await page.waitForNavigation();
+  await page.waitFor(config.delay_long);
 
   await page.click(config.export_selectors.input_date_thru);
   await page.waitForNavigation();
