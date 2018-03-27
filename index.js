@@ -79,7 +79,11 @@ const config = require('./config');
       await page.waitFor(config.delay_short);
     } else {
       await page.keyboard.press("Enter");
-      await page.waitForNavigation();
+      try {
+        await page.waitForNavigation();
+      } catch (e) {
+        consoleLog('Error: Navigation timed out!');
+      }
     }
 
     await page.waitFor(config.delay_short);
