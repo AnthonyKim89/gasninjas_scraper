@@ -147,7 +147,6 @@ const config = require('./config');
 
   consoleLog('Filling in the Date From...');
   await page.click(config.export_selectors.input_date_from);
-  // await page.waitForNavigation();
   await page.waitFor(config.delay_long);
   consoleLog('Filling in the Date From.....');
   await page.evaluate((obj) => {
@@ -161,7 +160,6 @@ const config = require('./config');
 
   consoleLog('Filling in the Date To...');
   await page.click(config.export_selectors.input_date_to);
-  // await page.waitForNavigation();
   await page.waitFor(config.delay_long);
   consoleLog('Filling in the Date To.....');
   await page.evaluate((obj) => {
@@ -173,13 +171,8 @@ const config = require('./config');
   await page.waitFor(config.delay_long);
   printScreen('export_date_to');
 
-  await page.click(config.export_selectors.input_date_thru);
-  // await page.waitForNavigation();
-  await page.waitFor(config.delay_long);
-
   consoleLog('Filling in the Email...');
   await page.click(config.export_selectors.input_send_to);
-  // await page.waitForNavigation();
   await page.waitFor(config.delay_long);
   consoleLog('Filling in the Email.....');
   await page.evaluate((obj) => {
@@ -191,9 +184,12 @@ const config = require('./config');
   await page.waitFor(config.delay_long);
   printScreen('export_email');
 
-  await page.click(config.export_selectors.input_date_thru);
-  // await page.waitForNavigation();
-  await page.waitFor(config.delay_long);
+  try {
+    await page.click(config.export_selectors.input_date_thru);
+    await page.waitFor(config.delay_long);
+  } catch (e) {
+    consoleLog('Error: Could not find an element.');
+  }
 
   consoleLog('Selecting a data type...');
   await page.click(config.export_selectors.input_data_type);
